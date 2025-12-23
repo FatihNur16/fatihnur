@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio - Your Name</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Use system sans-serif stack (removed Google Poppins import) */
+        :root{
+            --primary: #0B3D91;
+            --secondary: #4B5563;
+            --accent: #FFC107;
+            --bg: #F4F6F8;
+            --text: #0B1220;
+            --success: #22C55E;
+            --danger: #EF4444;
+        }
+
+        * {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .name-highlight {
+            background: linear-gradient(90deg, #FFD166 0%, #FFB703 60%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            text-shadow: 0 6px 18px rgba(11,18,32,0.18);
+        }
+
+        /* Softer hero color variants */
+        .hero-greeting { color: rgba(255,255,255,0.98); }
+        .hero-school { color: rgba(255,255,255,0.95); font-weight:400; }
+        .school-link {
+            background: linear-gradient(90deg, #FFD166 0%, #FFB703 60%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            text-decoration: underline;
+            text-decoration-color: rgba(255,255,255,0.12);
+        }
+        .hero-role { color: rgba(255,255,255,0.95); }
+        .hero-desc { color: rgba(255,255,255,0.9); }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(11,18,32,0.08);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.2s ease;
+            color: #374151;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.25s ease;
+        }
+
+        .nav-link:hover{
+            color: var(--primary);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-16px); }
+        }
+
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .skill-tag {
+            background: var(--primary);
+            border: 1px solid rgba(11,61,145,0.12);
+            color: #fff;
+        }
+
+        .btn-primary{
+            background: var(--accent);
+            color: var(--text);
+            padding: .45rem .9rem;
+            border-radius: 999px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            white-space: nowrap;
+            gap: .5rem;
+        }
+
+        .btn-primary:hover{ filter: brightness(.95); }
+
+        .btn-secondary{
+            background: transparent;
+            color: var(--primary);
+            border:2px solid rgba(11,61,145,0.12);
+            padding:.55rem .95rem;
+            border-radius:999px;
+            font-weight:600;
+        }
+
+        .contact-btn{
+            background: var(--primary);
+            color: #fff;
+            padding:.65rem;
+            border-radius:999px;
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+        }
+
+        .contact-btn:hover{ opacity:.95; transform: translateY(-2px); transition: all .15s ease; }
+
+        /* School logo responsive sizing: grayscale by default, color on hover */
+        .school-logo {
+            display: block;
+            margin: 0 auto;
+            width: clamp(72px, 12vw, 160px);
+            height: auto;
+            filter: grayscale(100%);
+            transition: filter .25s ease, transform .2s ease;
+            cursor: pointer;
+        }
+
+        .school-logo:hover {
+            filter: none;
+            transform: scale(1.03);
+        }
+
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="#home" class="text-2xl font-bold gradient-text">YourName</a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link">Beranda</a>
+                    <a href="#about" class="nav-link">Tentang</a>
+                    <a href="#portfolio" class="nav-link">Portfolio</a>
+                    <a href="#education" class="nav-link">Pendidikan</a>
+                    <a href="#blog" class="nav-link">Blog</a>
+                    <a href="#contact" class="nav-link">Kontak</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <a href="#home" class="block py-2 nav-link">Beranda</a>
+                <a href="#about" class="block py-2 nav-link">Tentang</a>
+                <a href="#portfolio" class="block py-2 nav-link">Portfolio</a>
+                <a href="#education" class="block py-2 nav-link">Pendidikan</a>
+                <a href="#blog" class="block py-2 nav-link">Blog</a>
+                <a href="#contact" class="block py-2 nav-link">Kontak</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center hero-gradient pt-20">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="text-white">
+                    <h1 class="text-3xl md:text-4xl font-bold mb-4 hero-greeting">Halo Semua 👋</h1>
+                        <h1 class="text-4xl md:text-5xl font-bold mb-6">Saya,  <span class="name-highlight">Muhammad Fatih Nur Rosyid</span></h1>
+                    <p class="text-lg md:text-xl mb-2 hero-school">Siswa Mekatronika <a href="https://www.smtijogja.sch.id" target="_blank" rel="noopener noreferrer" class="school-link">SMK-SMTI YOGYAKARTA</a>.</p>
+                    <p class="text-lg mb-8 hero-desc">Portofolio ini menampilkan proyek dan perkembangan saya di bidang teknologi industri.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#contact" class="btn-primary">Hubungi Saya</a>
+                        <a href="#portfolio" class="btn-secondary">Lihat Portfolio</a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="float-animation">
+                        <div class="w-96 h-96 bg-white/10 backdrop-blur-lg rounded-full mx-auto flex items-center justify-center">
+                            <i class="fas fa-code text-white text-9xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold gradient-text mb-4">Tentang Saya</h2>
+                <p class="text-gray-600">Full Stack Developer & IT Enthusiast</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-3xl font-bold mb-6">Full Stack Developer & Lulusan Sistem Informasi</h3>
+                    <p class="text-gray-700 mb-4 leading-relaxed">
+                        Saya adalah seorang Full Stack Developer dengan pengalaman dalam mengembangkan aplikasi web modern dan scalable. 
+                        Fokus utama saya adalah menciptakan solusi teknologi yang efisien dan user-friendly.
+                    </p>
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        Dengan latar belakang Sistem Informasi, saya memiliki pemahaman mendalam tentang bagaimana teknologi 
+                        dapat digunakan untuk memecahkan masalah bisnis dan meningkatkan produktivitas.
+                    </p>
+                    
+                    <h4 class="text-2xl font-bold mb-4 gradient-text">Tech Stack & Keahlian</h4>
+                    <div class="flex flex-wrap gap-3 mb-6">
+                        <span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">CAD (AutoCAD)</span>
+                        <span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">SolidWorks</span>
+                        <span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">PLC Programming</span>
+                        <span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">Siemens (TIA)</span>
+                        <span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">Schneider / Modicon</span>
+                        <span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">Pneumatics</span>
+                        <span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">Hydraulics</span>
+                        <span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">Electrical Maintenance</span>
+                        <span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">Ladder Logic</span>
+                        <span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">SCADA / OPC</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="bg-gradient-to-br from-purple-50 to-blue-50 p-6 rounded-xl card-hover">
+                        <i class="fas fa-code text-4xl text-purple-600 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Backend Development</h4>
+                        <p class="text-gray-600 text-sm">PHP, Laravel, CodeIgniter, RESTful API</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-blue-50 to-purple-50 p-6 rounded-xl card-hover">
+                        <i class="fas fa-database text-4xl text-blue-600 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Database</h4>
+                        <p class="text-gray-600 text-sm">MySQL, MariaDB, Query Optimization</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-pink-50 to-purple-50 p-6 rounded-xl card-hover">
+                        <i class="fas fa-paint-brush text-4xl text-pink-600 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Frontend</h4>
+                        <p class="text-gray-600 text-sm">HTML, CSS, JavaScript, Tailwind, Bootstrap</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-xl card-hover">
+                        <i class="fas fa-project-diagram text-4xl text-indigo-600 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Methodology</h4>
+                        <p class="text-gray-600 text-sm">Clean Code, SDLC, Agile</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold gradient-text mb-4">Portfolio</h2>
+                <p class="text-gray-600">Beberapa project yang telah dikembangkan</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Card 1 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="h-48 bg-gradient-to-br from-purple-400 to-blue-500 flex items-center justify-center">
+                        <i class="fas fa-shopping-cart text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Sistem E-Commerce</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Platform e-commerce modern dengan fitur lengkap termasuk payment gateway, inventory management, dan dashboard analytics.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs">Laravel</span>
+                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs">MySQL</span>
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs">Bootstrap</span>
+                        </div>
+                        <a href="#" class="text-purple-600 hover:text-purple-700 font-semibold">
+                            Lihat Detail <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="h-48 bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Sistem E-Learning</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Platform pembelajaran online dengan fitur kuis interaktif, video pembelajaran, dan tracking progress siswa.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs">PHP</span>
+                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs">CodeIgniter</span>
+                            <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs">JavaScript</span>
+                        </div>
+                        <a href="#" class="text-purple-600 hover:text-purple-700 font-semibold">
+                            Lihat Detail <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project Card 3 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="h-48 bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center">
+                        <i class="fas fa-chart-line text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Dashboard Monitoring</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Dashboard real-time untuk monitoring produksi, sales, dan performa bisnis dengan visualisasi data yang menarik.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs">Laravel</span>
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs">Chart.js</span>
+                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs">REST API</span>
+                        </div>
+                        <a href="#" class="text-purple-600 hover:text-purple-700 font-semibold">
+                            Lihat Detail <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project Card 4 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="h-48 bg-gradient-to-br from-green-400 to-teal-500 flex items-center justify-center">
+                        <i class="fas fa-mobile-alt text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Website Company Profile</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Website company profile modern dan responsif dengan desain profesional dan SEO-friendly.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs">HTML/CSS</span>
+                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs">JavaScript</span>
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs">Tailwind</span>
+                        </div>
+                        <a href="#" class="text-purple-600 hover:text-purple-700 font-semibold">
+                            Lihat Detail <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project Card 5 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="h-48 bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center">
+                        <i class="fas fa-file-invoice text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Sistem Inventory</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Sistem manajemen inventory dengan fitur stock opname, purchase order, dan laporan inventory lengkap.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs">Laravel</span>
+                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs">MySQL</span>
+                            <span class="bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs">PDF Export</span>
+                        </div>
+                        <a href="#" class="text-purple-600 hover:text-purple-700 font-semibold">
+                            Lihat Detail <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project Card 6 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="h-48 bg-gradient-to-br from-red-400 to-pink-500 flex items-center justify-center">
+                        <i class="fas fa-users text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3">Sistem HRD</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Sistem Human Resource Management untuk mengelola karyawan, absensi, cuti, dan payroll secara terintegrasi.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs">CodeIgniter</span>
+                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs">MySQL</span>
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs">jQuery</span>
+                        </div>
+                        <a href="#" class="text-purple-600 hover:text-purple-700 font-semibold">
+                            Lihat Detail <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section (only education) -->
+    <section id="education" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-center">
+                <div class="text-center">
+                    <h2 class="text-4xl font-bold gradient-text mb-8">Pendidikan</h2>
+                    <!-- Place your logo at assets/school-logo.png -->
+                    <a href="https://www.smtijogja.sch.id" target="_blank" rel="noopener noreferrer">
+                        <img src="Logo SMTI Yk Transparan.png" alt="Logo Sekolah - SMK-SMTI Yogyakarta" class="school-logo mb-4" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold gradient-text mb-4">Blog & Artikel</h2>
+                <p class="text-gray-600">Tulisan dan pemikiran seputar teknologi</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Blog Card 1 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="h-48 bg-gradient-to-br from-purple-400 to-blue-500 flex items-center justify-center">
+                        <i class="fas fa-blog text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 text-sm text-gray-500 mb-3">
+                            <i class="fas fa-calendar"></i>
+                            <span>20 Desember 2024</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Memahami Laravel Service Container</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Service Container adalah salah satu fitur paling powerful di Laravel. Artikel ini membahas cara kerja dan implementasinya dalam project nyata.</p>
+                        <a href="#" class="text-purple-600 hover:text-purple-700 font-semibold">
+                            Baca Selengkapnya <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Blog Card 2 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="h-48 bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center">
+                        <i class="fas fa-database text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 text-sm text-gray-500 mb-3">
+                            <i class="fas fa-calendar"></i>
+                            <span>15 Desember 2024</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Optimasi Query Database MySQL</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Tips dan trik untuk mengoptimasi performa database MySQL di aplikasi Laravel dengan teknik indexing dan query optimization.</p>
+                        <a href="#" class="text-purple-600 hover:text-purple-700 font-semibold">
+                            Baca Selengkapnya <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Blog Card 3 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg card-hover">
+                    <div class="h-48 bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center">
+                        <i class="fas fa-shield-alt text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 text-sm text-gray-500 mb-3">
+                            <i class="fas fa-calendar"></i>
+                            <span>10 Desember 2024</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Keamanan Web Application Best Practices</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Panduan lengkap mengamankan aplikasi web dari berbagai ancaman seperti SQL Injection, XSS, dan CSRF attacks.</p>
+                        <a href="#" class="text-purple-600 hover:text-purple-700 font-semibold">
+                            Baca Selengkapnya <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <p class="text-purple-600 font-semibold mb-2">Kontak</p>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-8">Hubungi Saya</h2>
+            </div>
+
+            <div class="max-w-2xl mx-auto text-center">
+                <div class="flex justify-center gap-4 md:gap-6 flex-wrap mb-8">
+                    <a href="tel:+6281234567890" class="flex items-center justify-center w-14 h-14 rounded-full contact-btn hover:scale-110 transition-all duration-300">
+                        <i class="fas fa-phone text-xl"></i>
+                    </a>
+                    <a href="mailto:youremail@example.com" class="flex items-center justify-center w-14 h-14 rounded-full contact-btn hover:scale-110 transition-all duration-300">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                    <a href="#" class="flex items-center justify-center w-14 h-14 rounded-full contact-btn hover:scale-110 transition-all duration-300">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" class="flex items-center justify-center w-14 h-14 rounded-full contact-btn hover:scale-110 transition-all duration-300">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="flex items-center justify-center w-14 h-14 rounded-full contact-btn hover:scale-110 transition-all duration-300">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="flex items-center justify-center w-14 h-14 rounded-full contact-btn hover:scale-110 transition-all duration-300">
+                        <i class="fab fa-youtube text-xl"></i>
+                    </a>
+                    <a href="#" class="flex items-center justify-center w-14 h-14 rounded-full contact-btn hover:scale-110 transition-all duration-300">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-2xl font-bold gradient-text mb-4">YourName</h3>
+                    <p class="text-gray-400">Full Stack Developer dengan passion dalam menciptakan solusi teknologi yang inovatif.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <div class="space-y-2">
+                        <a href="#home" class="block text-gray-400 hover:text-white transition">Beranda</a>
+                        <a href="#about" class="block text-gray-400 hover:text-white transition">Tentang</a>
+                        <a href="#portfolio" class="block text-gray-400 hover:text-white transition">Portfolio</a>
+                        <a href="#contact" class="block text-gray-400 hover:text-white transition">Kontak</a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Kategori</h4>
+                    <div class="space-y-2">
+                        <a href="#" class="block text-gray-400 hover:text-white transition">Web Development</a>
+                        <a href="#" class="block text-gray-400 hover:text-white transition">Mobile Development</a>
+                        <a href="#" class="block text-gray-400 hover:text-white transition">UI/UX Design</a>
+                        <a href="#" class="block text-gray-400 hover:text-white transition">Technology</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 YourName. Made with <i class="fas fa-heart text-red-500"></i> using <a href="https://tailwindcss.com" class="text-purple-400 hover:text-purple-300">Tailwind CSS</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Smooth scroll with offset for fixed navbar
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('shadow-md');
+            } else {
+                nav.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body>
+</html>
