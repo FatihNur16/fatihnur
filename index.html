@@ -109,11 +109,31 @@
             animation: float 3s ease-in-out infinite;
         }
 
+        /* Style dasar yang sudah kamu buat */
         .skill-tag {
             background: var(--primary);
             border: 1px solid rgba(11,61,145,0.12);
             color: #fff;
+            transition: all 0.3s ease; /* Tambahkan transisi agar halus saat di-hover */
         }
+        
+        /* Variasi khusus untuk Soft Skills agar terlihat lebih 'fresh' */
+        .skill-tag-soft {
+            background: #e676d7; /* Biru sangat muda */
+            border: 1px solid #e676d7;
+            color: #fff;
+            transition: all 0.3s ease; /* Tambahkan transisi agar halus saat di-hover */
+        }
+        
+        .skill-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        } 
+
+       .skill-tag-soft:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        } 
 
         .btn-primary{
             background: var(--accent);
@@ -210,6 +230,16 @@
             width: 24px;
             height: 24px;
         }
+        /* Mobile responsive fixes */
+        @media (max-width: 768px) {
+            .hero-gradient {
+                padding-bottom: 3rem;
+            }
+            #portfolio .grid.md\:grid-cols-2 {
+                grid-template-columns: 1fr;
+            }
+
+        }
     </style>
 
      <style>
@@ -225,12 +255,12 @@
         .more-projects {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+            transition: max-height 0.8s ease-in-out, opacity 0.5s ease-in-out;
             opacity: 0;
         }
         
         .more-projects.show {
-            max-height: 2000px;
+            max-height: 9999px;
             opacity: 1;
         }
         
@@ -290,8 +320,8 @@
         <div class="container mx-auto px-6">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="text-white">
-                    <h1 class="text-3xl md:text-4xl font-bold mb-4 hero-greeting">Selamat Datang</h1>
-                        <h1 class="text-4xl md:text-5xl font-bold mb-6">Saya,  <span class="name-highlight">Muhammad Fatih Nur Rosyid</span></h1>
+                    <h1 class="text-3xl md:text-4xl font-bold mb-1 hero-greeting"> </h1>
+                        <h1 class="text-4xl md:text-5xl font-bold mb-6"><span class="name-highlight">Muhammad Fatih Nur Rosyid</span></h1>
                     <p class="text-lg md:text-xl mb-2 hero-school">Siswa Mekatronika <a href="https://www.smtijogja.sch.id" target="_blank" rel="noopener noreferrer" class="school-link">SMK-SMTI YOGYAKARTA</a>.</p>
                    </div>
 
@@ -316,52 +346,50 @@
 
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div>
-                    <h2 class="text-3xl font-bold mb-6">Siswa SMK SMTI Yogyakarta | Mekatronika</h2>
-                    <p class="text-gray-700 mb-4 leading-relaxed">
-                        Saya merupakan siswa di SMK SMTI Yogyakarta dengan konsentrasi Keahlian Teknik Mekatronika yang memiliki semangat tinggi dalam belajar dan mengembangkan diri.
-                        Ketertarikan saya berfokus pada bidang Mekanika serta aplikasi teknologi yang terintegrasi dalam dunia otomasi.
-                    </p>
-                    <p class="text-gray-700 mb-6 leading-relaxed">
-                        Dengan latar belakang Teknik Mekatronika, saya memiliki pemahaman mendasar tentang sistem teknologi 
-                        industri yang diimplementasikan untuk memecahkan masalah di bidang manufaktur.
+                    <h2 class="text-3xl font-bold mb-6">Calon Praktisi Mekatronika</h2>
+                    <p class="text-gray-800 mb-4 leading-relaxed">
+                        Saya merupakan siswa Teknik Mekatronika di SMK SMTI Yogyakarta. Saya sangat tertarik dengan dunia mekanik dan sistem otomasi industri. Selama sekolah, saya belajar bagaimana cara kerja mesin manufaktur dan cara mencari solusi teknis untuk masalah di lapangan. Saya orang yang hobi belajar hal baru dan siap memberikan kontribusi terbaik di dunia industri.
                     </p>
                     
-                    <h4 class="text-2xl font-bold mb-4 gradient-text">Minat & Keahlian</h4>
-                    <div class="flex flex-wrap gap-3 mb-6">
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">CAD/CAM</span>
+                    <h4 class="text-2xl font-bold mb-4 gradient-text">Profil Keahlian</h4>
+                    
+                    <div class="flex flex-wrap gap-3 mb-6">                        
+                        <span class="skill-tag-soft px-4 py-2 rounded-full text-sm font-medium">Problem Solving</span>
+                        <span class="skill-tag-soft px-4 py-2 rounded-full text-sm font-medium">Teamwork</span>
+                        <span class="skill-tag-soft px-4 py-2 rounded-full text-sm font-medium">Disiplin SOP & K3</span>
+                        <span class="skill-tag-soft px-4 py-2 rounded-full text-sm font-medium">Adaptif</span>
+                        <span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">PLC Programming</span>
                         <span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">Pneumatics</span>
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">Hydraulics</span>
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">PLC</span>
                         <span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">Electrical</span>
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">Welding</span>
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">Milling</span>
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">Lathe</span>
-                        <span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">Maintenance</span>
+                        <span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">Digital Drawing</span>
+                        <span class="skill-tag px-4 py-2 rounded-full text-sm font-medium">Milling & Lathe</span>
+
+
                     </div>
                 </div>
 
                 <div class="grid grid-cols-2 gap-6">
-    <div class="bg-gradient-to-br from-blue-200 to-cyan-200 p-6 rounded-xl card-hover">
-        <i class="fas fa-drafting-compass text-4xl text-blue-600 mb-4"></i>
-        <h4 class="text-xl font-bold mb-2">CAD/CAM</h4>
-        <p class="text-gray-600 text-sm">AutoCAD, SolidWorks, Mastercam</p>
-    </div>
-    <div class="bg-gradient-to-br from-purple-200 to-blue-200 p-6 rounded-xl card-hover">
-        <i class="fas fa-cogs text-4xl text-purple-600 mb-4"></i>
-        <h4 class="text-xl font-bold mb-2">Maintenance</h4>
-        <p class="text-gray-600 text-sm">Preventive Maintenance, Basic Repair, Machine Inspection</p>
-    </div>
-    <div class="bg-gradient-to-br from-indigo-200 to-purple-200 p-6 rounded-xl card-hover">
-        <i class="fas fa-ruler-combined text-4xl text-indigo-600 mb-4"></i>
-        <h4 class="text-xl font-bold mb-2">Otomasi & Kontrol</h4>
-        <p class="text-gray-600 text-sm">PLC, Pneumatics, Hydraulic, Electrical</p>
-    </div>
-    <div class="bg-gradient-to-br from-cyan-200 to-blue-200 p-6 rounded-xl card-hover">
-        <i class="fas fa-tools text-4xl text-cyan-600 mb-4"></i>
-        <h4 class="text-xl font-bold mb-2">Fabrikasi</h4>
-        <p class="text-gray-600 text-sm">Machining, Welding, Assembly</p>
-    </div>
-</div>
+                    <div class="bg-gradient-to-br from-blue-200 to-cyan-200 p-6 rounded-xl card-hover">
+                        <i class="fas fa-pencil-ruler text-4xl text-blue-600 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Technical drawing</h4>
+                        <p class="text-gray-600 text-sm">Membuat gambar kerja 2D & 3D (AutoCAD, SolidWorks, Mastercam, Inventor). </p>
+                    </div>
+                    <div class="bg-gradient-to-br from-purple-200 to-blue-200 p-6 rounded-xl card-hover">
+                        <i class="fas fa-tools text-4xl text-purple-600 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Pemeliharaan Mesin</h4>
+                        <p class="text-gray-600 text-sm">Memahami prosedur Maintenance dan teknik troubleshooting pada sistem mesin industri.</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-indigo-200 to-purple-200 p-6 rounded-xl card-hover">
+                        <i class="fas fa-microchip text-4xl text-indigo-600 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Otomasi & Kontrol</h4>
+                        <p class="text-gray-600 text-sm">Wiring & pemrograman kontrol (PLC-Pneumatik)</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-cyan-200 to-blue-200 p-6 rounded-xl card-hover">
+                        <i class="fas fa-industry text-4xl text-cyan-600 mb-4"></i>
+                        <h4 class="text-xl font-bold mb-2">Produksi</h4>
+                        <p class="text-gray-600 text-sm">Operasional mesin lathe/milling & Assembly komponen.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -408,7 +436,7 @@
                 </div>
 
                 <!-- Project Card 3 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-xl card-hover">
+                <div class="bg-white rounded-xl overflow-hidden shadow-xl card-hover hover-mt-4">
                     <div class="h-48 bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center">
                         <i class="fas fa-chart-line text-white text-6xl"></i>
                     </div>
@@ -474,7 +502,7 @@
 
             <!-- More Projects - Hidden by Default -->
             <div id="moreProjects" class="more-projects mt-8">
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 pb-8">
                     <!-- Project Card 7 -->
                     <div class="bg-white rounded-xl overflow-hidden shadow-xl card-hover">
                         <div class="h-48 bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center">
@@ -524,7 +552,7 @@
                     </div>
 
                     <!-- Project Card 10 -->
-                    <div class="bg-white rounded-xl overflow-hidden shadow-xl card-hover mb-12">
+                    <div class="bg-white rounded-xl overflow-hidden shadow-xl card-hover">
                         <div class="h-48 bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center">
                             <i class="fas fa-hospital text-white text-6xl"></i>
                         </div>
@@ -540,7 +568,7 @@
                     </div>
 
                     <!-- Project Card 11 -->
-                    <div class="bg-white rounded-xl overflow-hidden shadow-xl card-hover mb-12">
+                    <div class="bg-white rounded-xl overflow-hidden shadow-xl card-hover">
                         <div class="h-48 bg-gradient-to-br from-violet-400 to-purple-500 flex items-center justify-center">
                             <i class="fas fa-utensils text-white text-6xl"></i>
                         </div>
@@ -556,7 +584,7 @@
                     </div>
 
                     <!-- Project Card 12 -->
-                    <div class="bg-white rounded-xl overflow-hidden shadow-xl card-hover mb-12">
+                    <div class="bg-white rounded-xl overflow-hidden shadow-xl card-hover">
                         <div class="h-48 bg-gradient-to-br from-fuchsia-400 to-pink-500 flex items-center justify-center">
                             <i class="fas fa-tasks text-white text-6xl"></i>
                         </div>
@@ -698,7 +726,7 @@
                     <a href="https://wa.me/6285934408764?text=Halo%20Fatih,%20saya%20ingin%20bertanya%20tentang..." class="flex items-center justify-center w-14 h-14 rounded-full contact-btn hover:scale-110 transition-all duration-300">
                         <i class="fab fa-whatsapp text-xl"></i>
                     </a>
-                    <a href="mailto:youremail@example.com" class="flex items-center justify-center w-14 h-14 rounded-full contact-btn hover:scale-110 transition-all duration-300">
+                    <a href="/cdn-cgi/l/email-protection#443d2b31362129252d2804213c25293428216a272b29" class="flex items-center justify-center w-14 h-14 rounded-full contact-btn hover:scale-110 transition-all duration-300">
                         <i class="fas fa-envelope text-xl"></i>
                     </a>
                     <a href="https://www.linkedin.com/in/muhammadfatihnurrosyid" class="flex items-center justify-center w-14 h-14 rounded-full contact-btn hover:scale-110 transition-all duration-300">
@@ -724,8 +752,8 @@
             <div class="grid md:grid-cols-3 gap-8 mb-8">
                 <div>
                     <h3 class="text-lg font-semibold mb-4">Muhammad Fatih Nur Rosyid</h3>
-                    <p class="text-gray-400">fatihnurrosyid@gmail.com</p>
-                    <p class="text-gray-400">Yogyakarta</p>
+                    <p class="text-gray-400"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3f595e4b5657514a4d4d504c46565b7f58525e5653115c5052">[email&#160;protected]</a></p>
+                    <p class="text-gray-400">Yogyakarta.</p>
                 </div>
 
                 <div>
@@ -754,12 +782,12 @@
             </div>
 
             <div class="border-t border-gray-700 pt-8 text-center text-gray-400 text-sm">
-                <p>Created by <span class="name-foot">Muhammad Fatih</span>, Built with</i> using <a href="https://tailwindcss.com" class="text-blue-500">Tailwind CSS</a></p>
+                <p>Created by <span class="name-foot">Muhammad Fatih</span>, Built with</i> using <a href="https://tailwindcss.com" class="text-blue-500">Tailwind CSS.</a> AI Assisted.</p>
             </div>
         </div>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -822,15 +850,6 @@
                 scrollToTopBtn.classList.remove('show');
             }
         });
-
-        // Fungsi untuk scroll ke atas dengan smooth animation
-        scrollToTopBtn.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
     </script>
-
 </body>
 </html>
