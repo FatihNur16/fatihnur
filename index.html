@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+</html><!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -726,13 +727,13 @@
                     <a href="https://wa.me/6285934408764?text=Halo%20Fatih,%20saya%20ingin%20bertanya%20tentang..." class="flex items-center justify-center w-14 h-14 rounded-full contact-btn hover:scale-110 transition-all duration-300">
                         <i class="fab fa-whatsapp text-xl"></i>
                     </a>
-                    <a href="/cdn-cgi/l/email-protection#443d2b31362129252d2804213c25293428216a272b29" class="flex items-center justify-center w-14 h-14 rounded-full contact-btn hover:scale-110 transition-all duration-300">
+                    <a href="mailto:fatihnurrosyid@gmail.com" class="flex items-center justify-center w-14 h-14 rounded-full contact-btn hover:scale-110 transition-all duration-300">
                         <i class="fas fa-envelope text-xl"></i>
                     </a>
                     <a href="https://www.linkedin.com/in/muhammadfatihnurrosyid" class="flex items-center justify-center w-14 h-14 rounded-full contact-btn hover:scale-110 transition-all duration-300">
                         <i class="fab fa-linkedin text-xl"></i>
                     </a>
-                    <a href="https://github.com/muhammadfatihnurrosyid" class="flex items-center justify-center w-14 h-14 rounded-full contact-btn hover:scale-110 transition-all duration-300">
+                    <a href="https://github.com/fatih-space" class="flex items-center justify-center w-14 h-14 rounded-full contact-btn hover:scale-110 transition-all duration-300">
                         <i class="fab fa-github text-xl"></i>
                     </a>
                     <a href="https://www.instagram.com/fatnr_16/" class="flex items-center justify-center w-14 h-14 rounded-full contact-btn hover:scale-110 transition-all duration-300">
@@ -750,11 +751,14 @@
     <footer class="bg-gray-900 text-white py-12">
         <div class="container mx-auto px-6">
             <div class="grid md:grid-cols-3 gap-8 mb-8">
+
+
                 <div>
                     <h3 class="text-lg font-semibold mb-4">Muhammad Fatih Nur Rosyid</h3>
-                    <p class="text-gray-400"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3f595e4b5657514a4d4d504c46565b7f58525e5653115c5052">[email&#160;protected]</a></p>
+                    <a href="mailto:fatihnurrosyid@gmail.com" class="text-gray-400 ">fatihnurrosyid@gmail.com</a>
                     <p class="text-gray-400">Yogyakarta.</p>
                 </div>
+
 
                 <div>
                     <h4 class="text-lg font-semibold mb-4">Kategori</h4>
@@ -849,6 +853,14 @@
             } else {
                 scrollToTopBtn.classList.remove('show');
             }
+        });
+
+        // Scroll ke atas saat tombol diklik
+        scrollToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     </script>
 </body>
