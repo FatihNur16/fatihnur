@@ -314,6 +314,7 @@
                 <a href="#education" class="block py-2 nav-link">Pendidikan</a>
                 <a href="#blog" class="block py-2 nav-link">Blog</a>
                 <a href="#contact" class="block py-2 nav-link">Kontak</a>
+                <a href="#gallery" class="block py-2 nav-link">Galeri</a>   
             </div>
         </div>
     </nav>
@@ -331,7 +332,7 @@
                 <div class="hidden md:block">
                     <div class="float-animation my-auto">
                         <div class="w-96 h-96 bg-white/10 backdrop-blur-lg rounded-full mx-auto flex items-center justify-center overflow-hidden">
-                             <img src="profil.png" alt="foto profil" class="w-[24rem] h-[24rem] object-cover"/>
+                             <img src="foto/profil.png" alt="foto profil" class="w-[24rem] h-[24rem] object-cover"/>
                         </div>
                     </div>
                 </div>
@@ -340,7 +341,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-gray-50e">
+    <section id="about" class="py-20 bg-gray-50">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold gradient-text mb-4 pb-1">Tentang Saya</h2>
@@ -397,7 +398,7 @@
         </div>
     </section>
 
-        <!-- Portfolio Section -->
+        <!-- Gallery Section -->
     <section id="portfolio" class="py-20 bg-gray-50">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
@@ -661,7 +662,7 @@
                     <h2 class="text-4xl font-bold gradient-text mb-8">Pendidikan</h2>
                     <!-- Place your logo at assets/school-logo.png -->
                     <a href="https://www.smtijogja.sch.id" target="_blank" rel="noopener noreferrer">
-                        <img src="Logo SMTI Yk Transparan.png" alt="Logo Sekolah - SMK-SMTI Yogyakarta" class="school-logo mb-4" />
+                        <img src="foto/Logo SMTI Yk Transparan.png" alt="Logo Sekolah - SMK-SMTI Yogyakarta" class="school-logo mb-4" />
                     </a>
                 </div>
             </div>
@@ -745,6 +746,226 @@
         </div>
     </section>
 
+<!-- Gallery Section -->
+<section id="gallery" class="py-20 bg-gray-50">
+  <div class="container mx-auto px-6">
+ 
+    <!-- Header -->
+    <div class="text-center mb-10">
+      <h2 class="text-4xl font-bold gradient-text mb-4 pb-1">Galeri Aktivitas</h2>
+    </div>
+ 
+    <!-- Toggle Button — mirip style expandBtn project -->
+    <div class="text-center mb-8">
+      <button id="galToggleBtn"
+        class="bg-gradient-to-r from-blue-800 to-blue-900 text-white px-8 py-3 rounded-full font-semibold
+               hover:from-blue-700 hover:to-blue-800 shadow-lg hover:shadow-xl inline-flex items-center gap-3
+               transition-all duration-300">
+        <i class=""></i>
+        <span id="galBtnText">Lihat Galeri Foto</span>
+        <i id="galChevron" class="fas fa-chevron-down transition-transform duration-300"></i>
+      </button>
+    </div>
+ 
+    <!-- Panel -->
+    <div id="galPanel" class="more-projects">
+      <div id="galGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 pb-4"></div>
+    </div>
+ 
+  </div>
+</section>
+ 
+<!-- Lightbox -->
+<div id="galLightbox"
+  style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.78);
+         backdrop-filter:blur(10px);align-items:center;justify-content:center;padding:24px;">
+  <div style="background:#fff;border-radius:18px;padding:18px;
+              width:min(520px, calc(100vw - 48px));
+              position:relative;animation:galPop .25s cubic-bezier(.34,1.56,.64,1);
+              box-shadow:0 40px 100px rgba(0,0,0,.3);">
+    <button id="galLbClose"
+      style="position:absolute;top:-12px;right:-12px;width:30px;height:30px;border-radius:50%;
+             background:#fff;border:1.5px solid #e0e4ec;font-size:13px;cursor:pointer;
+             display:flex;align-items:center;justify-content:center;color:#374151;
+             box-shadow:0 2px 8px rgba(0,0,0,.1);">✕</button>
+    <!-- Kotak 1:1 — foto selalu persegi, tidak gepeng/terlalu panjang -->
+    <div id="galLbBody"
+      style="width:100%;aspect-ratio:1/1;border-radius:10px;overflow:hidden;background:#f3f5f7;
+             display:flex;align-items:center;justify-content:center;"></div>
+    <div id="galLbCap"
+      style="margin-top:11px;text-align:center;font-size:13px;font-weight:600;color:#374151;"></div>
+  </div>
+</div>
+ 
+<style>
+  @keyframes galPop {
+    from { transform: scale(.85); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
+  }
+  .gal-card-img {
+    width:100%; height:100%; object-fit:cover; display:block; transition:filter .25s;
+  }
+  .gal-card:hover .gal-card-img { filter: brightness(.75); }
+  .gal-cap-overlay {
+    position:absolute;inset:0;
+    background:linear-gradient(to top,rgba(10,18,30,.65) 0%,transparent 52%);
+    display:flex;align-items:flex-end;padding:12px;
+    opacity:0;transition:opacity .22s;
+  }
+  .gal-card:hover .gal-cap-overlay { opacity:1; }
+  .gal-lb-img {
+    width:100%; height:100%;
+    object-fit:contain; display:block;
+  }
+  .gal-lb-ph {
+    width:100%; height:100%;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  }
+</style>
+ 
+<script>
+(function () {
+  /* ── DATA: isi src dengan path foto aslimu ── */
+  const galPhotos = [
+    { src: 'foto/1.jpg', cap: 'Komponen elektronik' },
+    { src: 'foto/2.jpg', cap: 'Pengukuran dengan jangka sorong' },
+    { src: 'foto/3.jpg', cap: 'Sistem pneumatik' },
+    { src: 'foto/4.jpg', cap: 'Benda kerja' },
+    { src: 'foto/5.jpg', cap: 'Workplace' },
+    { src: 'foto/6.jpg', cap: 'Mikro kontroler' },
+    { src: 'foto/7.jpg', cap: 'Assembly hammer' },
+    { src: 'foto/8.jpg', cap: 'Proses heat treatment (bara api)' },
+    { src: 'foto/9.jpg', cap: 'Kunjungan industri (Pocari Sweat)' },
+    { src: 'foto/10.jpg', cap: 'Kunjungan industri (Yakult)' },
+    { src: 'foto/11.jpg', cap: 'Praktisi industri' },
+    { src: 'foto/12.jpg', cap: 'Sistem electro-pneumatik' },
+    { src: 'foto/13.png', cap: 'Web programing' },
+    { src: 'foto/14.png', cap: 'Desain CAD 3D' },
+    { src: 'foto/15.png', cap: 'Rangkaian pneumatik' },
+    { src: 'foto/16.png', cap: 'Rangkaian elektro-pneumatik' },
+    { src: 'foto/17.jpg', cap: 'Trainer mechatronics system' },
+    { src: 'foto/18.jpg', cap: 'Pemrograman PLC' },
+    { src: 'foto/19.jpg', cap: 'Gambar teknik manual' },
+    { src: 'foto/20.jpg', cap: 'Teknik listrik' },
+    { src: 'foto/21.jpg', cap: 'Mesin bubut/lathe' },
+    { src: 'foto/22.jpg', cap: 'Web IOT' },
+    { src: 'foto/23.jpg', cap: 'Programing' },
+    { src: 'foto/24.jpg', cap: 'Sistem transmisi gerak' },
+    { src: 'foto/25.jpg', cap: 'Mesin Milling' },
+    { src: 'foto/26.jpg', cap: 'Welding' },
+    { src: 'foto/27.jpg', cap: 'SMTI Student' },
+
+  ];
+ 
+  /* warna gradient per card — sama seperti project cards */
+  const galGradients = [
+    'from-blue-400 to-indigo-500',
+    'from-orange-400 to-red-500',
+    'from-green-400 to-teal-500',
+    'from-yellow-400 to-orange-500',
+    'from-purple-400 to-pink-500',
+    'from-green-400 to-yellow-500',
+    'from-indigo-400 to-purple-500',
+    'from-cyan-400 to-blue-500',
+    'from-pink-400 to-rose-500',
+    'from-teal-400 to-green-500',
+    'from-red-400 to-orange-500',
+    'from-blue-400 to-cyan-500',
+  ];
+ 
+  /* Build grid */
+  const galGrid = document.getElementById('galGrid');
+  galPhotos.forEach(function (p, i) {
+    const card = document.createElement('div');
+    card.className = 'gal-card bg-white rounded-xl overflow-hidden shadow-xl card-hover';
+    card.style.cursor = 'pointer';
+    card.onclick = function () { galOpenLb(i); };
+ 
+    const top = document.createElement('div');
+    top.className = 'h-48 bg-gradient-to-br ' + galGradients[i % galGradients.length]
+                  + ' flex items-center justify-center relative overflow-hidden';
+ 
+    if (p.src) {
+      top.innerHTML =
+        '<img class="gal-card-img" src="' + p.src + '" alt="' + p.cap + '">'
+        + '<div class="gal-cap-overlay"><span style="font-size:12px;font-weight:600;color:#fff;">' + p.cap + '</span></div>';
+    } else {
+      top.innerHTML =
+        '<i class="fas fa-image text-white text-6xl opacity-60"></i>'
+        + '<div class="gal-cap-overlay"><span style="font-size:12px;font-weight:600;color:#fff;">' + p.cap + '</span></div>';
+    }
+ 
+    const body = document.createElement('div');
+    body.className = 'p-6';
+    body.innerHTML =
+      '<h3 class="text-xl font-bold mb-2">' + p.cap + '</h3>'
+      + '<p class="text-gray-500 text-sm">Aktivitas SMK-SMTI Yogyakarta · Teknik Mekatronika</p>';
+ 
+    card.appendChild(top);
+    card.appendChild(body);
+    galGrid.appendChild(card);
+  });
+ 
+  /* ── Toggle panel ── */
+  var galOpen = false;
+  document.getElementById('galToggleBtn').addEventListener('click', function () {
+    galOpen = !galOpen;
+    var panel   = document.getElementById('galPanel');
+    var btnText = document.getElementById('galBtnText');
+    var chevron = document.getElementById('galChevron');
+ 
+    if (galOpen) {
+      panel.classList.add('show');
+      btnText.textContent = 'Sembunyikan Galeri';
+      chevron.style.transform = 'rotate(180deg)';
+    } else {
+      panel.classList.remove('show');
+      btnText.textContent = 'Lihat Galeri Foto';
+      chevron.style.transform = 'rotate(0deg)';
+    }
+  });
+ 
+  /* ── Lightbox ── */
+  function galOpenLb(i) {
+    var p   = galPhotos[i];
+    var lb  = document.getElementById('galLightbox');
+    var body = document.getElementById('galLbBody');
+    var cap  = document.getElementById('galLbCap');
+ 
+    if (p.src) {
+      body.innerHTML = '<img class="gal-lb-img" src="' + p.src + '" alt="' + p.cap + '">';
+    } else {
+      body.innerHTML =
+        '<div class="gal-lb-ph">'
+        + '<i class="fas fa-image" style="font-size:48px;color:#ced3dc;"></i>'
+        + '<p style="font-size:13px;color:#b0b8c8;font-weight:500;">Tambahkan foto: ' + p.cap + '</p>'
+        + '</div>';
+    }
+    cap.textContent = p.cap;
+    lb.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+ 
+  function galCloseLb() {
+    document.getElementById('galLightbox').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+ 
+  document.getElementById('galLbClose').addEventListener('click', galCloseLb);
+  document.getElementById('galLightbox').addEventListener('click', function (e) {
+    if (e.target === this) galCloseLb();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') galCloseLb();
+  });
+ 
+})();
+</script>
+ 
+ 
+    
+
+
     <!-- Contact Section -->
     <section id="contact" class="py-20 bg-gray-50">
         <div class="container mx-auto px-6">
@@ -767,7 +988,7 @@
                     <a href="https://github.com/fatih-space" class="flex items-center justify-center w-14 h-14 rounded-full contact-btn hover:scale-110 transition-all duration-300">
                         <i class="fab fa-github text-xl"></i>
                     </a>
-                    <a href="https://www.instagram.com/fatnr_16/" class="flex items-center justify-center w-14 h-14 rounded-full contact-btn hover:scale-110 transition-all duration-300">
+                    <a href="https://www.instagram.com/faithnrr/" class="flex items-center justify-center w-14 h-14 rounded-full contact-btn hover:scale-110 transition-all duration-300">
                         <i class="fab fa-instagram text-xl"></i>
                     </a>
                     <a href="https://discord.com/users/1416381357667520604" class="flex items-center justify-center w-14 h-14 rounded-full contact-btn hover:scale-110 transition-all duration-300">
@@ -777,6 +998,8 @@
             </div>
         </div>
     </section>
+
+    
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12">
@@ -809,7 +1032,6 @@
                         <a href="#portfolio" class="block text-gray-400 hover:text-white transition">Portfolio</a>
                         <a href="#education" class="block text-gray-400 hover:text-white transition">Education</a>
                         <a href="#blog" class="block text-gray-400 hover:text-white transition">Blog</a>
-                        <a href="#contact" class="block text-gray-400 hover:text-white transition">Kontak</a>
                     </div>
                 </div>
 
@@ -817,7 +1039,7 @@
             </div>
 
             <div class="border-t border-gray-700 pt-8 text-center text-gray-400 text-sm">
-                <p>Created by <span class="name-foot">Muhammad Fatih</span>, Built with</i> using <a href="https://tailwindcss.com" class="text-blue-500">Tailwind CSS.</a> AI Assisted.</p>
+                <p>Created by <span class="name-foot">Muhammad Fatih</span>, Built with using <a href="https://tailwindcss.com" class="text-blue-500">Tailwind CSS.</a> AI Assisted.</p>
             </div>
         </div>
     </footer>
@@ -895,4 +1117,7 @@
         });
     </script>
 </body>
+
+
 </html>
+
